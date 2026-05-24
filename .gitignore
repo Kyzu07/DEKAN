@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+__MACOSX/
+
+# Datasets (download separately — see README)
+dataset/*.csv
+dataset/*.zip
+dataset/*.npy
+dataset/*/
+
+# Training outputs
+checkpoints/
+logs/
+results/
+*.log
+
+# MLflow
+mlruns/
+
+# Model artifacts
+*.pth
+*.pt
+*.ckpt
+
+# Numpy data files
+*.npy
+
+# Compiled binaries (Pyraformer TVM)
+Formers/Pyraformer/pyraformer/lib/
