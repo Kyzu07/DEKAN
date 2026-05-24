@@ -1,6 +1,6 @@
 # ModelX: A Decomposition-driven Time Series Forecasting Framework
 
-> Preliminary work. Under review at AISTATS 2026.
+> Preliminary work.
 
 ModelX is a decomposition-driven, patch-based forecasting framework that leverages **Kolmogorov–Arnold Networks (KANs)** to replace attention with efficient polynomial operators. It unifies multi-period seasonal-trend decomposition with patch-level modeling under a principled polynomial function space.
 
