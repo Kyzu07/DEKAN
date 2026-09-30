@@ -37,7 +37,7 @@ else
     --lradj "type1" \
     --train_epochs 30 \
     --itr 1 \
-    > "$LOG" 2>&1 || echo "FAILED ETTh1 L=336 T=96 -- see $LOG"
+    2>&1 | tee "$LOG"
 fi
 
 LOG="logs/l336/TimeTK_ETTh1_336_192.log"
@@ -66,7 +66,7 @@ else
     --lradj "type1" \
     --train_epochs 30 \
     --itr 1 \
-    > "$LOG" 2>&1 || echo "FAILED ETTh1 L=336 T=192 -- see $LOG"
+    2>&1 | tee "$LOG"
 fi
 
 LOG="logs/l336/TimeTK_ETTh1_336_336.log"
@@ -95,7 +95,7 @@ else
     --lradj "type1" \
     --train_epochs 30 \
     --itr 1 \
-    > "$LOG" 2>&1 || echo "FAILED ETTh1 L=336 T=336 -- see $LOG"
+    2>&1 | tee "$LOG"
 fi
 
 LOG="logs/l336/TimeTK_ETTh1_336_720.log"
@@ -124,7 +124,7 @@ else
     --lradj "type1" \
     --train_epochs 30 \
     --itr 1 \
-    > "$LOG" 2>&1 || echo "FAILED ETTh1 L=336 T=720 -- see $LOG"
+    2>&1 | tee "$LOG"
 fi
 
 echo "--- ETTh1 at L=336, authors' published hyperparameters complete ---"
