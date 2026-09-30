@@ -45,7 +45,7 @@ do
       --batch_size 64 \
       --learning_rate 0.0005 \
       --kan_basis $1 \
-      --kan_grid_size $2 >logs/ablation/kan_basis/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$1'_g'$2.log
+      --kan_grid_size $2 2>&1 | tee logs/ablation/kan_basis/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$1'_g'$2.log
 done
 
 for pred_len in 192
@@ -78,7 +78,7 @@ do
       --batch_size 64 \
       --learning_rate 0.0005 \
       --kan_basis $1 \
-      --kan_grid_size $2 >logs/ablation/kan_basis/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$1'_g'$2.log
+      --kan_grid_size $2 2>&1 | tee logs/ablation/kan_basis/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$1'_g'$2.log
 done
 
 for pred_len in 336
@@ -111,7 +111,7 @@ do
       --batch_size 64 \
       --learning_rate 0.0005 \
       --kan_basis $1 \
-      --kan_grid_size $2 >logs/ablation/kan_basis/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$1'_g'$2.log
+      --kan_grid_size $2 2>&1 | tee logs/ablation/kan_basis/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$1'_g'$2.log
 done
 
 for pred_len in 720
@@ -144,7 +144,7 @@ do
       --batch_size 64 \
       --learning_rate 0.0005 \
       --kan_basis $1 \
-      --kan_grid_size $2 >logs/ablation/kan_basis/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$1'_g'$2.log
+      --kan_grid_size $2 2>&1 | tee logs/ablation/kan_basis/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$1'_g'$2.log
 done
 
 done

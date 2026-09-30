@@ -41,7 +41,7 @@ do
       --itr 1 \
       --batch_size 400 \
       --learning_rate 0.0001 \
-      --kernel_sizes $kernel_sizes >logs/ablation/kernels/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kernel_sizes.log
+      --kernel_sizes $kernel_sizes 2>&1 | tee logs/ablation/kernels/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kernel_sizes.log
 done
 
 for pred_len in 192
@@ -72,7 +72,7 @@ do
       --itr 1 \
       --batch_size 400 \
       --learning_rate 0.0001 \
-      --kernel_sizes $kernel_sizes >logs/ablation/kernels/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kernel_sizes.log
+      --kernel_sizes $kernel_sizes 2>&1 | tee logs/ablation/kernels/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kernel_sizes.log
 done
 
 for pred_len in 336
@@ -103,7 +103,7 @@ do
       --itr 1 \
       --batch_size 400 \
       --learning_rate 0.0001 \
-      --kernel_sizes $kernel_sizes >logs/ablation/kernels/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kernel_sizes.log
+      --kernel_sizes $kernel_sizes 2>&1 | tee logs/ablation/kernels/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kernel_sizes.log
 done
 
 for pred_len in 720
@@ -134,7 +134,7 @@ do
       --itr 1 \
       --batch_size 400 \
       --learning_rate 0.0001 \
-      --kernel_sizes $kernel_sizes >logs/ablation/kernels/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kernel_sizes.log
+      --kernel_sizes $kernel_sizes 2>&1 | tee logs/ablation/kernels/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kernel_sizes.log
 done
 
 done

@@ -39,5 +39,5 @@ do
       --patience 10 \
       --itr 1 \
       --batch_size 400 \
-      --learning_rate 0.0001 >logs/ablation/L96/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+      --learning_rate 0.0001 2>&1 | tee logs/ablation/L96/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
 done

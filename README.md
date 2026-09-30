@@ -29,7 +29,7 @@ Logs go to `logs/LongForecasting/`, metrics are appended to `result.txt`, and pr
 | `kernels` | moving average kernels of the trend |
 | `bottleneck` | stacked encoder layers and the re-projection between them |
 | `lookback` | look-back 96, 192, 512, 720 |
-| `loss` | MSE, MAE, DBLoss, FreDF, TransDF, PSLoss, A1, TILDE-Q, Soft-DTW, DILATE |
+| `loss` | MSE, MAE, DBLoss, FreDF, TransDF, PSLoss, TILDE-Q, Soft-DTW, DILATE |
 | `seed` | other random seeds |
 | `L96` | look-back 96 |
 | `zero_shot` | a model trained on one dataset, evaluated on the others (run `scripts/LONG` first) |

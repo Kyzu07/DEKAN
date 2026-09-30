@@ -45,7 +45,7 @@ do
       --itr 1 \
       --batch_size 128 \
       --learning_rate 0.0001 \
-      --bottleneck_dim $bottleneck_dim >logs/ablation/bottleneck/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_e'$e_layers'_h'$bottleneck_dim.log
+      --bottleneck_dim $bottleneck_dim 2>&1 | tee logs/ablation/bottleneck/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_e'$e_layers'_h'$bottleneck_dim.log
 done
 
 done
@@ -80,7 +80,7 @@ do
       --itr 1 \
       --batch_size 128 \
       --learning_rate 0.0001 \
-      --bottleneck_type linear >logs/ablation/bottleneck/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_e'$e_layers'_linear'.log
+      --bottleneck_type linear 2>&1 | tee logs/ablation/bottleneck/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_e'$e_layers'_linear'.log
 done
 
 done

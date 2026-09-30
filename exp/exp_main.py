@@ -86,9 +86,6 @@ class Exp_Main(Exp_Basic):
         if loss == 'psloss':
             from utils.losses import PSLoss
             return PSLoss(self.model, base=self.args.loss_base)
-        if loss == 'a1':
-            from utils.losses import A1Loss
-            return A1Loss(self.model, w_aux=self.args.a1_w_aux)
         if loss == 'tildeq':
             from utils.losses_shape import TILDEQLoss
             return TILDEQLoss()
@@ -114,7 +111,7 @@ class Exp_Main(Exp_Basic):
                 batch_x = batch_x.float().to(self.device)
                 batch_y = batch_y.float()
 
-                outputs, _ = self.model(batch_x)
+                outputs = self.model(batch_x)
                 f_dim = -1 if self.args.features == 'MS' else 0
                 outputs = outputs[:, -self.args.pred_len:, f_dim:]
                 batch_y = batch_y[:, -self.args.pred_len:, f_dim:].to(self.device)
@@ -174,18 +171,15 @@ class Exp_Main(Exp_Basic):
                 f_dim = -1 if self.args.features == 'MS' else 0
                 if self.args.use_amp:
                     with torch.cuda.amp.autocast():
-                        outputs, aux = self.model(batch_x)
+                        outputs = self.model(batch_x)
                         outputs = outputs[:, -self.args.pred_len:, f_dim:]
                         batch_y = batch_y[:, -self.args.pred_len:, f_dim:]
                         loss = criterion(outputs, batch_y)
                 else:
-                    outputs, aux = self.model(batch_x)
+                    outputs = self.model(batch_x)
                     outputs = outputs[:, -self.args.pred_len:, f_dim:]
                     batch_y = batch_y[:, -self.args.pred_len:, f_dim:]
-                    if self.args.loss == 'a1':
-                        loss = criterion(outputs, batch_y, aux)
-                    else:
-                        loss = criterion(outputs, batch_y)
+                    loss = criterion(outputs, batch_y)
                 train_loss.append(loss.item())
 
                 if (i + 1) % 100 == 0:
@@ -254,7 +248,7 @@ class Exp_Main(Exp_Basic):
                 batch_x = batch_x.float().to(self.device)
                 batch_y = batch_y.float().to(self.device)
 
-                outputs, _ = self.model(batch_x)
+                outputs = self.model(batch_x)
                 f_dim = -1 if self.args.features == 'MS' else 0
                 outputs = outputs[:, -self.args.pred_len:, f_dim:]
                 batch_y = batch_y[:, -self.args.pred_len:, f_dim:]
@@ -343,7 +337,7 @@ class Exp_Main(Exp_Basic):
         with torch.no_grad():
             for i, (batch_x, batch_y, batch_x_mark, batch_y_mark) in enumerate(pred_loader):
                 batch_x = batch_x.float().to(self.device)
-                outputs, _ = self.model(batch_x)
+                outputs = self.model(batch_x)
                 preds.append(outputs.detach().cpu().numpy())
 
         preds = np.concatenate(preds, axis=0)

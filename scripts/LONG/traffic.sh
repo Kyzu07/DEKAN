@@ -40,7 +40,7 @@ do
       --pct_start 0.2 \
       --itr 1 \
       --batch_size 6 \
-      --learning_rate 0.0005 >logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+      --learning_rate 0.0005 2>&1 | tee logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
 done
 
 for pred_len in 336 720
@@ -72,5 +72,5 @@ do
       --pct_start 0.2 \
       --itr 1 \
       --batch_size 6 \
-      --learning_rate 0.0005 >logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+      --learning_rate 0.0005 2>&1 | tee logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
 done

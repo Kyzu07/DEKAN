@@ -42,7 +42,7 @@ do
       --itr 1 \
       --batch_size 64 \
       --learning_rate 0.0005 \
-      --kan_degree $kan_degree >logs/ablation/kan_degree/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kan_degree.log
+      --kan_degree $kan_degree 2>&1 | tee logs/ablation/kan_degree/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kan_degree.log
 done
 
 for pred_len in 192
@@ -74,7 +74,7 @@ do
       --itr 1 \
       --batch_size 64 \
       --learning_rate 0.0005 \
-      --kan_degree $kan_degree >logs/ablation/kan_degree/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kan_degree.log
+      --kan_degree $kan_degree 2>&1 | tee logs/ablation/kan_degree/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kan_degree.log
 done
 
 for pred_len in 336
@@ -106,7 +106,7 @@ do
       --itr 1 \
       --batch_size 64 \
       --learning_rate 0.0005 \
-      --kan_degree $kan_degree >logs/ablation/kan_degree/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kan_degree.log
+      --kan_degree $kan_degree 2>&1 | tee logs/ablation/kan_degree/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kan_degree.log
 done
 
 for pred_len in 720
@@ -138,7 +138,7 @@ do
       --itr 1 \
       --batch_size 64 \
       --learning_rate 0.0005 \
-      --kan_degree $kan_degree >logs/ablation/kan_degree/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kan_degree.log
+      --kan_degree $kan_degree 2>&1 | tee logs/ablation/kan_degree/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kan_degree.log
 done
 
 done

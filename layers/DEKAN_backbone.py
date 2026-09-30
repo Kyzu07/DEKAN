@@ -89,7 +89,6 @@ class DEKAN_backbone(nn.Module):
             preds = torch.stack([self.heads[i](outputs[i]) for i in range(self.n_branches)], dim=2)
             w = torch.softmax(self.fusion_head(outputs), dim=-1)            # [bs x nvars x n_branches]
             y = (preds * w.unsqueeze(-1)).sum(dim=2)                        # [bs x nvars x target_window]
-        res_pred = y
 
         if self.use_trend:
             if self.target_window <= self.context_window:
@@ -104,18 +103,12 @@ class DEKAN_backbone(nn.Module):
             term = torch.sigmoid(self.alpha_s) * seasonal_pred
             y = term if y is None else y + term
 
-        # per-component forecasts, read by the a1 loss
-        aux = {}
-        if self.decomp_mode == 'full':
-            aux = {'trend': trend_pred, 'seasonal': seasonal_pred, 'residual': res_pred,
-                   'alpha_t': torch.sigmoid(self.alpha_t), 'alpha_s': torch.sigmoid(self.alpha_s)}
-
         # denorm
         if self.revin:
             y = y.permute(0, 2, 1)
             y = self.revin_layer(y, 'denorm')
             y = y.permute(0, 2, 1)
-        return y, aux
+        return y
 
 
 class SeriesDecomp(nn.Module):

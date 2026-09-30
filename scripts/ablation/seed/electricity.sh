@@ -42,7 +42,7 @@ do
       --itr 1 \
       --batch_size 16 \
       --learning_rate 0.0005 \
-      --random_seed $seed >logs/ablation/seed/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$seed.log
+      --random_seed $seed 2>&1 | tee logs/ablation/seed/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$seed.log
 done
 
 for pred_len in 192
@@ -74,7 +74,7 @@ do
       --itr 1 \
       --batch_size 16 \
       --learning_rate 0.0005 \
-      --random_seed $seed >logs/ablation/seed/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$seed.log
+      --random_seed $seed 2>&1 | tee logs/ablation/seed/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$seed.log
 done
 
 for pred_len in 336 720
@@ -106,7 +106,7 @@ do
       --itr 1 \
       --batch_size 12 \
       --learning_rate 0.0004 \
-      --random_seed $seed >logs/ablation/seed/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$seed.log
+      --random_seed $seed 2>&1 | tee logs/ablation/seed/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$seed.log
 done
 
 done

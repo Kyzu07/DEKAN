@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-import torch.nn.functional as F
 
 from utils.pca_basis import pca_torch
 
@@ -162,47 +161,3 @@ class PSLoss(nn.Module):
         alpha, beta, gamma = self.gradient_based_dynamic_weighting(true, pred, corr_loss, var_loss, mean_loss)
         return loss + self.ps_lambda * (alpha * corr_loss + beta * var_loss + gamma * mean_loss)
 
-
-# A1: supervises the trend / seasonal / residual forecasts separately
-def moving_average(x, kernel_size):                                          # x: [B x N x T]
-    pad = (kernel_size - 1) // 2
-    B, N, T = x.shape
-    x = x.reshape(B * N, 1, T)
-    p = min(pad, T - 1)
-    if p > 0:
-        x = F.pad(x, (p, p), mode='reflect')
-    if p < pad:
-        x = F.pad(x, (pad - p, pad - p), mode='replicate')
-    w = torch.ones(1, 1, kernel_size, device=x.device, dtype=x.dtype) / float(kernel_size)
-    return F.conv1d(x, w).reshape(B, N, T)
-
-
-class A1Loss(nn.Module):
-    def __init__(self, model, w_aux=0.1, kernel_size=25, delta=0.5, eps=1e-6):
-        super().__init__()
-        self.model = [model]
-        self.w_aux = w_aux
-        self.kernel_size = kernel_size
-        self.delta = delta
-        self.eps = eps
-
-    def forward(self, pred, target, aux=None):
-        loss = F.huber_loss(pred, target, delta=self.delta)
-        if self.w_aux == 0 or not aux:
-            return loss
-
-        backbone = self.model[0].model
-        with torch.no_grad():
-            y = backbone.revin_layer._normalize(target)
-        y = y.detach().transpose(1, 2).contiguous()                           # [B x N x T]
-
-        y_t = moving_average(y, self.kernel_size)
-        B_out = backbone.seasonal_head.B_out
-        y_s = torch.matmul(torch.matmul(y, B_out.t()), B_out) if B_out.numel() > 0 else torch.zeros_like(y)
-        y_r = y - y_t - y_s
-        y_t, y_s, y_r = y_t.detach(), y_s.detach(), y_r.detach()
-
-        at, as_ = aux['alpha_t'].detach(), aux['alpha_s'].detach()
-        for p, t in ((at * aux['trend'], y_t), (as_ * aux['seasonal'], y_s), (aux['residual'], y_r)):
-            loss = loss + self.w_aux * F.huber_loss(p, t, delta=self.delta) / (t.std().detach() + self.eps)
-        return loss

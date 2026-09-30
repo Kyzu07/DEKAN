@@ -43,7 +43,7 @@ do
       --itr 1 \
       --batch_size 400 \
       --learning_rate 0.0001 \
-      --kan_degree $kan_degree >logs/ablation/kan_degree/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kan_degree.log
+      --kan_degree $kan_degree 2>&1 | tee logs/ablation/kan_degree/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$kan_degree.log
 done
 
 done

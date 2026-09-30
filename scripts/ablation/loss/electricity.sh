@@ -43,7 +43,7 @@ do
       --itr 1 \
       --batch_size 16 \
       --learning_rate 0.0005 \
-      --loss $loss >logs/ablation/loss/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$loss.log
+      --loss $loss 2>&1 | tee logs/ablation/loss/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$loss.log
 done
 
 for pred_len in 192
@@ -76,7 +76,7 @@ do
       --itr 1 \
       --batch_size 16 \
       --learning_rate 0.0005 \
-      --loss $loss >logs/ablation/loss/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$loss.log
+      --loss $loss 2>&1 | tee logs/ablation/loss/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$loss.log
 done
 
 for pred_len in 336 720
@@ -109,7 +109,7 @@ do
       --itr 1 \
       --batch_size 12 \
       --learning_rate 0.0004 \
-      --loss $loss >logs/ablation/loss/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$loss.log
+      --loss $loss 2>&1 | tee logs/ablation/loss/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$loss.log
 done
 
 done

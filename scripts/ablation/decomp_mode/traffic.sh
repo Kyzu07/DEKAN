@@ -43,7 +43,7 @@ do
       --itr 1 \
       --batch_size 6 \
       --learning_rate 0.0005 \
-      --decomp_mode $decomp_mode >logs/ablation/decomp_mode/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$decomp_mode.log
+      --decomp_mode $decomp_mode 2>&1 | tee logs/ablation/decomp_mode/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$decomp_mode.log
 done
 
 for pred_len in 336 720
@@ -76,7 +76,7 @@ do
       --itr 1 \
       --batch_size 6 \
       --learning_rate 0.0005 \
-      --decomp_mode $decomp_mode >logs/ablation/decomp_mode/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$decomp_mode.log
+      --decomp_mode $decomp_mode 2>&1 | tee logs/ablation/decomp_mode/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_'$decomp_mode.log
 done
 
 done

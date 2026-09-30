@@ -49,7 +49,7 @@ do
       --target_data $1 \
       --target_data_path $2 \
       --target_enc_in $3 \
-      --target_batch_size $batch >logs/ablation/zero_shot/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_to_'$2.log
+      --target_batch_size $batch 2>&1 | tee logs/ablation/zero_shot/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_to_'$2.log
 done
 
 for pred_len in 192
@@ -86,7 +86,7 @@ do
       --target_data $1 \
       --target_data_path $2 \
       --target_enc_in $3 \
-      --target_batch_size $batch >logs/ablation/zero_shot/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_to_'$2.log
+      --target_batch_size $batch 2>&1 | tee logs/ablation/zero_shot/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_to_'$2.log
 done
 
 for pred_len in 336
@@ -123,7 +123,7 @@ do
       --target_data $1 \
       --target_data_path $2 \
       --target_enc_in $3 \
-      --target_batch_size $batch >logs/ablation/zero_shot/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_to_'$2.log
+      --target_batch_size $batch 2>&1 | tee logs/ablation/zero_shot/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_to_'$2.log
 done
 
 for pred_len in 720
@@ -160,7 +160,7 @@ do
       --target_data $1 \
       --target_data_path $2 \
       --target_enc_in $3 \
-      --target_batch_size $batch >logs/ablation/zero_shot/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_to_'$2.log
+      --target_batch_size $batch 2>&1 | tee logs/ablation/zero_shot/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len'_to_'$2.log
 done
 
 done

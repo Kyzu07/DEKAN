@@ -36,6 +36,6 @@ class Model(nn.Module):
 
     def forward(self, x):                                                   # x: [Batch, Input length, Channel]
         x = x.permute(0, 2, 1)                                              # x: [Batch, Channel, Input length]
-        x, aux = self.model(x)
+        x = self.model(x)
         x = x.permute(0, 2, 1)                                              # x: [Batch, Output length, Channel]
-        return x, aux
+        return x

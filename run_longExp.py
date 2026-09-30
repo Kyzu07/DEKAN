@@ -63,10 +63,9 @@ parser.add_argument('--backbone_type', type=str, default='kan',
 parser.add_argument('--bottleneck_type', type=str, default='mlp', help='re-projection between stacked layers, options:[mlp, linear]')
 parser.add_argument('--bottleneck_dim', type=str, default='0', help='hidden size of the mlp bottleneck, 0 for head_nf//2')
 parser.add_argument('--loss', type=str, default='huber',
-                    help='options:[huber, mse, mae, dbloss, fredf, transdf, psloss, a1, tildeq, softdtw, dilate]')
+                    help='options:[huber, mse, mae, dbloss, fredf, transdf, psloss, tildeq, softdtw, dilate]')
 parser.add_argument('--loss_base', type=str, default='mse', help='point-wise term of fredf, transdf and psloss')
 parser.add_argument('--dbloss_beta', type=float, default=0.5, help='DBLoss seasonal weight')
-parser.add_argument('--a1_w_aux', type=float, default=0.1, help='A1 weight of the component terms')
 
 # zero-shot
 parser.add_argument('--target_data', type=str, default=None, help='evaluate the trained model on this dataset')
@@ -118,7 +117,7 @@ Exp = Exp_Main
 # ablation flags that differ from their default are appended to the setting
 ABLATIONS = [('decomp_mode', 'dc'), ('kan_basis', 'kb'), ('kan_grid_size', 'kg'), ('kan_degree', 'kd'),
              ('kan_path', 'kp'), ('backbone_type', 'bb'), ('bottleneck_type', 'bt'), ('bottleneck_dim', 'bn'),
-             ('harmonics', 'h'), ('kernel_sizes', 'k'), ('period_list', 'p'), ('loss', 'ls'), ('a1_w_aux', 'aw'),
+             ('harmonics', 'h'), ('kernel_sizes', 'k'), ('period_list', 'p'), ('loss', 'ls'),
              ('random_seed', 'sd')]
 
 
@@ -129,7 +128,7 @@ def build_setting(ii):
         args.stride_ls.replace(' ', ''), args.des, ii)
     for name, code in ABLATIONS:
         value = getattr(args, name)
-        if value != parser.get_default(name) and not (name == 'a1_w_aux' and args.loss != 'a1'):
+        if value != parser.get_default(name):
             setting += '_{}{}'.format(code, str(value).replace(' ', ''))
     return setting
 
