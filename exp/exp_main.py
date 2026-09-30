@@ -104,7 +104,7 @@ class Exp_Main(Exp_Basic):
         ckpt = os.path.join(path, 'checkpoint_ema.pth')
         if not os.path.exists(ckpt):
             ckpt = os.path.join(path, 'checkpoint.pth')
-        self.model.load_state_dict(torch.load(ckpt))
+        self.model.load_state_dict(torch.load(ckpt, weights_only=True))
 
     def vali(self, vali_data, vali_loader, criterion):
         total_loss = []
@@ -292,7 +292,7 @@ class Exp_Main(Exp_Basic):
         ckpt = os.path.join(path, 'checkpoint_ema.pth')
         if not os.path.exists(ckpt):
             ckpt = os.path.join(path, 'checkpoint.pth')
-        state = torch.load(ckpt)
+        state = torch.load(ckpt, weights_only=True)
 
         # rebuild for the target channels; the AR trend head is the only per-channel weight
         self.args.data = self.args.target_data
