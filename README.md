@@ -2,6 +2,10 @@
 
 DEKAN is a decomposition-driven, patch-based model for long-term multivariate time series forecasting. The input is split into trend, seasonal and residual components. Trend and seasonality are extrapolated with lightweight heads, and the residual is modeled by parallel patch branches whose embeddings are mixed by a dual-path KAN block with Krawtchouk polynomial basis.
 
+## Architecture
+
+![DEKAN architecture](figures/architecture.png)
+
 ## Get Started
 
 1. Install Python 3.10+ and the requirements: `pip install -r requirements.txt`.
