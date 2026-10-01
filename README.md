@@ -6,6 +6,16 @@ DEKAN is a decomposition-driven, patch-based model for long-term multivariate ti
 
 ![DEKAN architecture](figures/architecture.png)
 
+## Forecast Visualization
+
+Forecasts with look-back window L = 336 and prediction length T = 336.
+
+| | vs. TimeKAN | vs. Time-TK |
+|---|---|---|
+| ETTh2 | ![](figures/forecast/etth2_vs_timekan.png) | ![](figures/forecast/etth2_vs_timetk.png) |
+| Electricity | ![](figures/forecast/electricity_vs_timekan.png) | ![](figures/forecast/electricity_vs_timetk.png) |
+| Traffic | ![](figures/forecast/traffic_vs_timekan.png) | ![](figures/forecast/traffic_vs_timetk.png) |
+
 ## Get Started
 
 1. Install Python 3.10+ and the requirements: `pip install -r requirements.txt`.
